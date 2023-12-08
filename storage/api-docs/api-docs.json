@@ -1,0 +1,161 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Laravel Kanban API",
+        "version": "0.1"
+    },
+    "paths": {
+        "/api/users": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get list of all users",
+                "description": "Returns list of all users",
+                "operationId": "28a3171c64761efe74ca3ef02663831a",
+                "responses": {
+                    "200": {
+                        "description": "Array[] : contain all users"
+                    },
+                    "419": {
+                        "description": "Delay error : CSRF Token missed ?"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Insert new user",
+                "description": "Create new user to DB",
+                "operationId": "8f5eff5a3f34302f9bc38c6dd0fc9526",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "firstname": {
+                                        "type": "string"
+                                    },
+                                    "lastname": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "String -> modified user id"
+                    },
+                    "400": {
+                        "description": "Bad request : All fields are required"
+                    },
+                    "419": {
+                        "description": "Delay error : CSRF Token missed ?"
+                    }
+                }
+            }
+        },
+        "/api/users/{id}": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get info for specific user by id",
+                "description": "Returns user by id",
+                "operationId": "7cb3a462279a7d00df359adcfba42caf",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Array[] : Target user"
+                    },
+                    "419": {
+                        "description": "Delay error : CSRF Token missed ?"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Modify info for specific user by id",
+                "description": "Modify user by id",
+                "operationId": "c7f0891099684fe0bc0264bdb86c9723",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id of target user",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "firstname": {
+                                        "type": "string"
+                                    },
+                                    "lastname": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "String -> modified user id"
+                    },
+                    "400": {
+                        "description": "Bad request : No user || Not connected || Not correct rights || No password || Bad password format"
+                    },
+                    "419": {
+                        "description": "Delay error : CSRF Token missed ?"
+                    }
+                }
+            }
+        },
+        "/api/v1/users/register": {
+            "get": {
+                "operationId": "870aacabb6dfc4cd6afd6e2c10961bce",
+                "responses": {
+                    "200": {
+                        "description": "User registration"
+                    }
+                }
+            }
+        }
+    }
+}
