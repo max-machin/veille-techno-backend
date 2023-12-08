@@ -67,7 +67,7 @@ Exemple de route ( utilisateurs ) :
 ```
 http://127.0.0.1:8000/api/users => Retourne la totalité des utilisateurs sous forme de tableau
 ```
-![postman](https://github.com/max-machin/veille-techno-backend/assets/91805615/c682151f-3952-4992-90f2-06468866c409)
+![kanbannn](https://github.com/max-machin/veille-techno-backend/assets/91805615/dd24c119-fd79-48c3-a81d-75fcdc627f38)
 
 ( Les routes de base sont disponibles la tableau de requête à gauche. )
 
