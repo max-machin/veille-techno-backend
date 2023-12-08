@@ -26,7 +26,7 @@
 - [Annexes](#Annexes)
   
 
-## Configuration / Installation du projet
+## Installation du projet
 Prérequis avant première utilisation du projet : 
 - Cloner le repo
 - Composer installé.
@@ -53,6 +53,16 @@ php artisan migrate
 Ajout de 'fake' data en base de données.
 ```sh
 php artisan db:seed
+```
+
+Ajout de 'fake' data en base de données.
+```sh
+php artisan db:seed
+```
+
+### Démarrage du projet
+```sh
+php artisan serve
 ```
 
 ## Laravel Sponsors
