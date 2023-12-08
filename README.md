@@ -27,6 +27,7 @@
   
 
 ### Configuration / Utilisation du projet
+Prérequis avant première utilisation du projet : cloner le repo, composer / Xampp || Wamp installé.
 
 Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
