@@ -69,6 +69,8 @@ http://127.0.0.1:8000/api/users => Retourne la totalité des utilisateurs sous f
 ```
 ![postman](https://github.com/max-machin/veille-techno-backend/assets/91805615/c682151f-3952-4992-90f2-06468866c409)
 
+( Les routes de base sont disponibles la tableau de requête à gauche. )
+
 ## Documentation
 Une documentation Swagger Ui est disponible à l'adresse suivante : 
 ```
