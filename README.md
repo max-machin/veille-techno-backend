@@ -37,7 +37,7 @@ Prérequis avant première utilisation du projet :
 ```bash
 git clone https://github.com/max-machin/veille-techno-backend.git
 ```
-### Installation
+### Installation de base
 Mise à jour des modules composer.
 ```sh
 cd veille-techno-backend
@@ -54,12 +54,7 @@ Ajout de 'fake' data en base de données.
 ```sh
 php artisan db:seed
 ```
-
-Ajout de 'fake' data en base de données.
-```sh
-php artisan db:seed
-```
-### Démarrage du projet
+#### Démarrage du projet
 ```sh
 php artisan serve
 ```
