@@ -26,7 +26,7 @@
 - [Annexes](#Annexes)
   
 
-### Configuration / Utilisation du projet
+## Configuration / Utilisation du projet
 Prérequis avant première utilisation du projet : 
 - cloner le repo
 - composer & Xampp || Wamp installé.
