@@ -21,7 +21,7 @@
 
 ## Table des matières
 
-- [Configuration / Utilisation du projet](#config)
+- [Configuration / Utilisation du projet](#configuration--utilisation-du-projet)
 - [Utilisation du projet](#cahierdescharges)
 - [Annexes](#Annexes)
   
