@@ -74,6 +74,7 @@ Une documentation Swagger Ui est disponible à l'adresse suivante :
 ```
 http://localhost:8000/api/documentation
 ```
+Les différentes routes sont testables depuis la documentation Swagger.
 
 ### Premium Partners
 
