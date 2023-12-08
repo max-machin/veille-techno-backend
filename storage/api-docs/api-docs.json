@@ -75,6 +75,51 @@
                 }
             }
         },
+        "/api/boards": {
+            "get": {
+                "tags": [
+                    "Boards"
+                ],
+                "summary": "Get list of all boards",
+                "description": "Returns list of all boards",
+                "operationId": "2a59923013089064327b5e1cd82b3559",
+                "responses": {
+                    "200": {
+                        "description": "Array[] : contain all boards"
+                    },
+                    "419": {
+                        "description": "Delay error : CSRF Token missed ?"
+                    }
+                }
+            }
+        },
+        "/api/boards/{id}": {
+            "get": {
+                "tags": [
+                    "Boards"
+                ],
+                "summary": "Get info for specific board by id",
+                "description": "Returns board by id",
+                "operationId": "cf0bf9b1370bb623828295954dd93f0d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Array[] : Target board"
+                    },
+                    "419": {
+                        "description": "Delay error : CSRF Token missed ?"
+                    }
+                }
+            }
+        },
         "/api/users": {
             "get": {
                 "tags": [
@@ -213,6 +258,30 @@
                     },
                     "419": {
                         "description": "Delay error : CSRF Token missed ?"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Delete user",
+                "description": "Delete user by id",
+                "operationId": "dbe9bc9d756ce487242da411d5b5dfc3",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id of target user",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Method not ready now"
                     }
                 }
             }

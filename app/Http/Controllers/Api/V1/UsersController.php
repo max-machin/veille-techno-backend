@@ -201,10 +201,23 @@ class UsersController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     */
+     * @OA\delete(
+     *     path="/api/users/{id}",
+     *     tags={"Users"},
+     *     summary="Delete user",
+     *     description="Delete user by id",
+     *      @OA\Parameter(
+     *          description="Id of target user",
+     *          name="id",
+     *          in="path",
+     *          required=true,
+     *          @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(response="200", description="Method not ready now"),
+     * )
+    */
     public function destroy(string $id)
     {
-        //
+        return 'Method not ready';
     }
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\V1\UsersController;
 use App\Http\Controllers\Api\V1\AuthController;
+use App\Http\Controllers\Api\V1\BoardController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
@@ -22,7 +23,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::group(['middleware' => 'web'], function () {
+    // Users
     Route::apiResource('/users', UsersController::class);
+
+    // Authentication
     Route::post('/login', [AuthController::class, 'authenticate']);
     Route::post('/register', [AuthController::class, 'register']);
+
+    // Board
+    Route::apiResource('/boards', BoardController::class);
 });

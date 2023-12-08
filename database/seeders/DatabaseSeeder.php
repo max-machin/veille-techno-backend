@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Board;
+use App\Models\Lists;
 use App\Models\Right;
 use App\Models\User;
 use App\Models\UserPassword;
@@ -16,9 +18,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $boards = Board::factory()->has(Lists::factory()->count(3))->count(1);
         
-        User::factory(10)->create(['right_id' => 1]);
-        
+        User::factory()
+            ->has($boards)
+            ->count(10)
+            ->create();
         return;
     }
 }

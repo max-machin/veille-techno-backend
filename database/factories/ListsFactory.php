@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Right>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Lists>
  */
-class RightFactory extends Factory
+class ListsFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,7 +18,7 @@ class RightFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => Str::Random(10),
+            'title' => Str::Random(10),
             'created_at' => now(),
         ];
     }

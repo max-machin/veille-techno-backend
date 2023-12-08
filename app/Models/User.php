@@ -21,7 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'right_id'
+        'right_id',
     ];
 
     /**
@@ -44,4 +44,8 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
     
+    public function boards()
+    {
+        return $this->belongsToMany(Board::class, 'user_board');
+    }
 }
