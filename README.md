@@ -44,10 +44,15 @@ cd veille-techno-backend
 composer install
 composer update
 ```
-
-Création / mise à jour de la base de données
+#### Base de données
+Création / mise à jour de la base de données.
 ```sh
 php artisan migrate
+```
+
+Ajout de 'fake' data en base de données.
+```sh
+php artisan db:seed
 ```
 
 ## Laravel Sponsors
