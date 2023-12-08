@@ -63,6 +63,10 @@ php artisan serve
 Depuis postman, toutes les routes de l'API sont utilisables. ( Elles sont également testable depuis Swagger Ui )
 Adresse d'utilisation : http://[SERVER_URL]/api
 
+Exemple de route ( utilisateurs ) :
+```php
+http://127.0.0.1:8000/api/users => Retourne la totalité des utilisateurs sous forme de tableau
+```
 
 ## Laravel Sponsors
 
