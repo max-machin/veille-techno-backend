@@ -21,8 +21,8 @@
 
 ## Table des matières
 
-- [Configuration / Utilisation du projet](#configuration--utilisation-du-projet)
-- [Utilisation du projet](#cahierdescharges)
+- [Installation du projet](#installation-du-projet)
+- [Utilisation du projet (Postman)](#utilisation-du-projet)
 - [Annexes](#Annexes)
   
 
@@ -64,6 +64,8 @@ php artisan db:seed
 ```sh
 php artisan serve
 ```
+
+## Utilisation du projet
 
 ## Laravel Sponsors
 
