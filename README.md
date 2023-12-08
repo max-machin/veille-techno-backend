@@ -59,13 +59,15 @@ Ajout de 'fake' data en base de données.
 ```sh
 php artisan db:seed
 ```
-
-## Utilisation du projet
-
 ### Démarrage du projet
 ```sh
 php artisan serve
 ```
+
+## Utilisation du projet ( Postman )
+Depuis postman, toutes les routes de l'API sont utilisables. ( Elles sont également testable depuis Swagger Ui )
+Adresse d'utilisation : http://[SERVER_URL]/api
+
 
 ## Laravel Sponsors
 
