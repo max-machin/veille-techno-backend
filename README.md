@@ -67,7 +67,7 @@ Exemple de route ( utilisateurs ) :
 ```
 http://127.0.0.1:8000/api/users => Retourne la totalité des utilisateurs sous forme de tableau
 ```
-![postman](https://github.com/max-machin/veille-techno-backend/assets/91805615/8f381d53-2b9d-4c17-9c02-16a4b9c4373c)
+![postman](https://github.com/max-machin/veille-techno-backend/assets/91805615/c682151f-3952-4992-90f2-06468866c409)
 
 ## Laravel Sponsors
 
