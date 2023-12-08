@@ -22,8 +22,8 @@
 ## Table des matières
 
 - [Installation du projet](#installation-du-projet)
-- [Utilisation du projet (Postman)](#utilisation-du-projet)
-- [Annexes](#Annexes)
+- [Utilisation du projet (Postman)](#utilisation-du-projet--postman-)
+- [Documentation](#documentation)
   
 
 ## Installation du projet
@@ -69,9 +69,11 @@ http://127.0.0.1:8000/api/users => Retourne la totalité des utilisateurs sous f
 ```
 ![postman](https://github.com/max-machin/veille-techno-backend/assets/91805615/c682151f-3952-4992-90f2-06468866c409)
 
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Documentation
+Une documentation Swagger Ui est disponible à l'adresse suivante : 
+```
+http://localhost:8000/api/documentation
+```
 
 ### Premium Partners
 
