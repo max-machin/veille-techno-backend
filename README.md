@@ -60,12 +60,12 @@ Ajout de 'fake' data en base de données.
 php artisan db:seed
 ```
 
+## Utilisation du projet
+
 ### Démarrage du projet
 ```sh
 php artisan serve
 ```
-
-## Utilisation du projet
 
 ## Laravel Sponsors
 
