@@ -26,14 +26,23 @@
 - [Annexes](#Annexes)
   
 
-## Configuration / Utilisation du projet
+## Configuration / Installation du projet
 Prérequis avant première utilisation du projet : 
-- cloner le repo
-- composer & Xampp || Wamp installé.
+- Cloner le repo
+- Composer installé.
+- Xampp || Wamp installé.
+- SQL installé.
 
 #### Clonage du projet
 ```bash
 git clone https://github.com/max-machin/veille-techno-backend.git
+```
+### Installation
+Mise à jour des modules composer.
+```sh
+cd veille-techno-backend
+composer install
+composer update
 ```
 
 ## Laravel Sponsors
