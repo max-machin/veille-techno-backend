@@ -60,13 +60,25 @@ php artisan serve
 ```
 
 ## Utilisation du projet ( Postman )
-Depuis postman, toutes les routes de l'API sont utilisables. ( Elles sont également testable depuis Swagger Ui )
-Adresse d'utilisation : http://[SERVER_URL]/api
+### Première utilisation - Etapes requises
+Ces étapes sont nécessaires après la création de la base de données pour un fonctionnement optimal de l'application.
+Enregistrer un nouvel utilisateur ( post : firstname, lastname, email, password ) 
+```
+http://[SERVER_URL]/api/register
+```
 
-Exemple de route ( utilisateurs ) :
+Connecter l'utilisateur ( post : email, password ) 
 ```
-http://127.0.0.1:8000/api/users => Retourne la totalité des utilisateurs sous forme de tableau
+http://[SERVER_URL]/api/login
 ```
+
+Créer un nouveau tableau pour cet utilisateur ( post : name ) 
+```
+http://[SERVER_URL]/api/boards
+```
+
+Une fois ces étapes effectuées, toutes les routes de l'API sont utilisables.
+
 ![kanbannn](https://github.com/max-machin/veille-techno-backend/assets/91805615/dd24c119-fd79-48c3-a81d-75fcdc627f38)
 
 ( Les routes de base sont disponibles la tableau de requête à gauche. )
