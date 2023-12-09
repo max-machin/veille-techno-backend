@@ -24,6 +24,7 @@
 - [Installation du projet](#installation-du-projet)
 - [Utilisation du projet (Postman)](#utilisation-du-projet--postman-)
 - [Documentation](#documentation)
+- [Annexes](#annexes)
   
 
 ## Installation du projet
@@ -54,11 +55,6 @@ php artisan migrate
 ```sh
 php artisan serve
 ```
-( Facultatif, peut poser des problèmes avec les ID des requêtes POSTMAN par défault livrées avec le projet )
-Ajout de 'fake' data en base de données.
-```sh
-php artisan db:seed
-```
 
 ## Utilisation du projet ( Postman )
 ### Première utilisation - Etapes requises
@@ -88,6 +84,14 @@ Une documentation Swagger Ui est disponible à l'adresse suivante :
 http://localhost:8000/api/documentation
 ```
 Les différentes routes sont testables depuis la documentation Swagger.
+
+## Annexes
+### Seeder
+( Facultatif, peut poser des problèmes avec les ID des requêtes POSTMAN par défault livrées avec le projet )
+Ajout de 'fake' data en base de données.
+```sh
+php artisan db:seed
+```
 
 ## License
 
