@@ -50,13 +50,14 @@ Création / mise à jour de la base de données.
 php artisan migrate
 ```
 
-Ajout de 'fake' data en base de données.
-```sh
-php artisan db:seed
-```
 #### Démarrage du projet
 ```sh
 php artisan serve
+```
+( Facultatif, peut poser des problèmes avec les ID des requêtes POSTMAN par défault livrées avec le projet )
+Ajout de 'fake' data en base de données.
+```sh
+php artisan db:seed
 ```
 
 ## Utilisation du projet ( Postman )
