@@ -257,6 +257,56 @@
                 }
             }
         },
+        "/api/boards/{id}/lists": {
+            "get": {
+                "tags": [
+                    "Lists",
+                    "Boards"
+                ],
+                "summary": "Get lists for specific board by id",
+                "description": "Returns lists by board id",
+                "operationId": "54ccc9a0362d5e0f73ad6333c2ad7fb8",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Array[] : Target board list's"
+                    },
+                    "400": {
+                        "description": "Bad request : No list "
+                    },
+                    "419": {
+                        "description": "Delay error : CSRF Token missed ?"
+                    }
+                }
+            }
+        },
+        "/api/cards": {
+            "get": {
+                "tags": [
+                    "Cards"
+                ],
+                "summary": "Get list of all cards",
+                "description": "Returns list of all cards",
+                "operationId": "da36620fff61c507338f56eae1799aa9",
+                "responses": {
+                    "200": {
+                        "description": "Array[] : contain all cards"
+                    },
+                    "419": {
+                        "description": "Delay error : CSRF Token missed ?"
+                    }
+                }
+            }
+        },
         "/api/lists": {
             "get": {
                 "tags": [

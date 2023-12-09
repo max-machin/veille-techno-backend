@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Lists extends Model
+class Card extends Model
 {
     use HasFactory;
 
-    public function boards()
+    public function lists()
     {
-        return $this->belongsToMany(Board::class, 'user_board');
+        return $this->belongsToMany(Lists::class);
     }
 }

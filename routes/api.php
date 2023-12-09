@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\V1\UsersController;
 use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\BoardController;
 use App\Http\Controllers\Api\V1\ListsController;
+use App\Http\Controllers\API\V1\CardController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
@@ -37,8 +38,13 @@ Route::group(['middleware' => 'web'], function () {
     Route::apiResource('/boards', BoardController::class);
     // Board Users
     Route::get('/boards/{id}/users', [BoardController::class, 'getBoardUsers']);
+    Route::get('/boards/{id}/lists', [BoardController::class, 'getBoardLists']);
 
     // List
     Route::apiResource('/lists', ListsController::class);
     Route::post('/boards/{id}/lists', [ListsController::class, 'addList']);
+
+    // Card
+    Route::apiResource('/cards', CardController::class);
+
 });

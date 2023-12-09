@@ -126,6 +126,37 @@ class BoardController extends Controller
         }
     }
 
+     /* ------------- GET LISTS LINKED TO BOARD ------------ */
+    /**
+     * @OA\Get(
+     *     path="/api/boards/{id}/lists",
+     *     tags={"Lists", "Boards"},
+     *     summary="Get lists for specific board by id",
+     *     description="Returns lists by board id",
+     *     @OA\Parameter(
+     *          name="id",
+     *          in="path",
+     *          @OA\Schema(type="integer"),
+     *          required=true
+     *     ),
+     *     @OA\Response(response="200", description="Array[] : Target board list's"),
+     *     @OA\Response(response="400", description="Bad request : No list "),
+     *     @OA\Response(response="419", description="Delay error : CSRF Token missed ?")
+     * )
+    */
+    public function getBoardLists(string $id)
+    {
+        if(!$id){
+            return Response::json('Error : Id is required to get lists of board.', 400);
+        } else {
+
+            if (empty(Board::find($id)->lists)){
+                return Response::json('Error : No lists find, have you specify board Id in query ?', 400);
+            }
+            return Board::find($id)->lists;
+        }
+    }
+
     
     /* ------------- UPDATE BOARD BY ID ------------ */
     /**
