@@ -81,8 +81,6 @@ Une fois ces étapes effectuées, toutes les routes de l'API sont utilisables.
 
 ![kanbannn](https://github.com/max-machin/veille-techno-backend/assets/91805615/dd24c119-fd79-48c3-a81d-75fcdc627f38)
 
-( Les routes de base sont disponibles la tableau de requête à gauche. )
-
 ## Documentation
 Une documentation Swagger Ui est disponible à l'adresse suivante : 
 ```
