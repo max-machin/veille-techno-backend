@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string("title");
-            $table->foreignId('board_id')->constrained('boards');
+            $table->boolean('is_archived')->default(0);
+            $table->foreignId('board_id')->constrained('boards')->delete('cascade');
         });
     }
 

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\V1\UsersController;
 use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\BoardController;
+use App\Http\Controllers\Api\V1\ListsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
@@ -25,6 +26,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group(['middleware' => 'web'], function () {
     // Users
     Route::apiResource('/users', UsersController::class);
+    // Users Boards
+    Route::get('/users/{user}/boards', [UsersController::class, 'getUserBoards']);
 
     // Authentication
     Route::post('/login', [AuthController::class, 'authenticate']);
@@ -32,4 +35,10 @@ Route::group(['middleware' => 'web'], function () {
 
     // Board
     Route::apiResource('/boards', BoardController::class);
+    // Board Users
+    Route::get('/boards/{id}/users', [BoardController::class, 'getBoardUsers']);
+
+    // List
+    Route::apiResource('/lists', ListsController::class);
+    Route::post('/boards/{id}/lists', [ListsController::class, 'addList']);
 });

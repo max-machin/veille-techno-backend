@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class UserBoard extends Model
 {
     use HasFactory;
+
+    protected $table = 'user_board';
 }

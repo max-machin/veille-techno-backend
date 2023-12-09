@@ -220,4 +220,34 @@ class UsersController extends Controller
     {
         return 'Method not ready';
     }
+
+    /* ------------- GET BOARD LINKED TO USER ------------ */
+    /**
+     * @OA\Get(
+     *     path="/api/users/{id}/boards",
+     *     tags={"Users"},
+     *     summary="Get boards for specific user by id",
+     *     description="Returns boards by user id",
+     *     @OA\Parameter(
+     *          name="id",
+     *          in="path",
+     *          @OA\Schema(type="integer"),
+     *          required=true
+     *     ),
+     *     @OA\Response(response="200", description="Array[] : Target user board's"),
+     *     @OA\Response(response="419", description="Delay error : CSRF Token missed ?")
+     * )
+    */
+    public function getUserBoards(string $id)
+    {
+        if(!$id){
+            return Response::json('Error : Id is required to get boards of user.', 400);
+        } else {
+
+            if (empty(User::find($id)->boards)){
+                return Response::json('Error : No boards find, have you specify user Id in query ?', 400);
+            }
+            return User::find($id)->boards;
+        }
+    }
 }

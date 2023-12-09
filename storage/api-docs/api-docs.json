@@ -91,6 +91,40 @@
                         "description": "Delay error : CSRF Token missed ?"
                     }
                 }
+            },
+            "post": {
+                "tags": [
+                    "Boards"
+                ],
+                "summary": "Insert new board",
+                "description": "Create new board to DB",
+                "operationId": "7581840c73e5d20c98cec6eff906612e",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "String -> modified board id"
+                    },
+                    "400": {
+                        "description": "Bad request : No name || not connected"
+                    },
+                    "419": {
+                        "description": "Delay error : CSRF Token missed ?"
+                    }
+                }
             }
         },
         "/api/boards/{id}": {
@@ -116,6 +150,261 @@
                     },
                     "419": {
                         "description": "Delay error : CSRF Token missed ?"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Boards"
+                ],
+                "summary": "Modify info for specific board by id",
+                "description": "Modify board by id",
+                "operationId": "512fd499e896a46d133bf76d6d37bd2e",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id of target board",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "is_archived": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "String -> modified board id"
+                    },
+                    "400": {
+                        "description": "Bad request : No user || Not connected || Not correct rights"
+                    },
+                    "419": {
+                        "description": "Delay error : CSRF Token missed ?"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Boards"
+                ],
+                "summary": "Delete board",
+                "description": "Delete board by id",
+                "operationId": "d1be3c718bb44cfeb4e38b698723dafe",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id of target board",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Method not ready now"
+                    }
+                }
+            }
+        },
+        "/api/boards/{id}/users": {
+            "get": {
+                "tags": [
+                    "Boards"
+                ],
+                "summary": "Get users for specific board by id",
+                "description": "Returns users by board id",
+                "operationId": "785134fe84c530c9c8438fcd0a9ca03d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Array[] : Target board user's"
+                    },
+                    "400": {
+                        "description": "Bad request : No user "
+                    },
+                    "419": {
+                        "description": "Delay error : CSRF Token missed ?"
+                    }
+                }
+            }
+        },
+        "/api/lists": {
+            "get": {
+                "tags": [
+                    "Lists"
+                ],
+                "summary": "Get list of all board's lists",
+                "description": "Returns list of all board's lists",
+                "operationId": "f977b65239f52b76b1aab3ccbf78b663",
+                "responses": {
+                    "200": {
+                        "description": "Array[] : contain all lists"
+                    },
+                    "419": {
+                        "description": "Delay error : CSRF Token missed ?"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Lists"
+                ],
+                "summary": "Insert new list",
+                "description": "Create new list to DB",
+                "operationId": "f711288a7f01987eebe161c229f110cb",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "String -> modified list id"
+                    },
+                    "400": {
+                        "description": "Bad request : No name || not connected"
+                    },
+                    "419": {
+                        "description": "Delay error : CSRF Token missed ?"
+                    }
+                }
+            }
+        },
+        "/api/lists/{id}": {
+            "get": {
+                "tags": [
+                    "Lists"
+                ],
+                "summary": "Get info for specific list by id",
+                "description": "Returns list by id",
+                "operationId": "6d080e643faf7717d8c908600dc8927d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Array[] : Target list"
+                    },
+                    "419": {
+                        "description": "Delay error : CSRF Token missed ?"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Lists"
+                ],
+                "summary": "Modify info for specific list by id",
+                "description": "Modify list by id",
+                "operationId": "12cbd776b9a2c84d7d2e72eb736e6e87",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id of target list",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "is_archived": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "String -> modified list id"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "419": {
+                        "description": "Delay error : CSRF Token missed ?"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Lists"
+                ],
+                "summary": "Delete list",
+                "description": "Delete list by id",
+                "operationId": "1eee913566619f184990ff756abac89a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id of target list",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Method not ready now"
                     }
                 }
             }
@@ -282,6 +571,34 @@
                 "responses": {
                     "200": {
                         "description": "Method not ready now"
+                    }
+                }
+            }
+        },
+        "/api/users/{id}/boards": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get boards for specific user by id",
+                "description": "Returns boards by user id",
+                "operationId": "1456edec21badff29ab40d9ddf77f905",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Array[] : Target user board's"
+                    },
+                    "419": {
+                        "description": "Delay error : CSRF Token missed ?"
                     }
                 }
             }
