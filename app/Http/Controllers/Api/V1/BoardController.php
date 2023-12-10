@@ -50,9 +50,29 @@ class BoardController extends Controller
     */
     public function show(string $id)
     {
+        $currentUser = Auth::user();
 
-        return Board::find($id);
- 
+        if (!isset($currentUser)){
+            return Response::json('Error : You are not connected.', 400);
+        }
+
+        if (!isset($currentUser->boards)){
+            return Response::json('Error : You have no board.', 400);
+        }
+
+        $isUserBoard = false;
+
+        foreach($currentUser->boards as $board){
+            if ($board->id == $id){
+                $isUserBoard = true;
+            }
+        }
+
+        if ($isUserBoard){
+            return Board::find($id);
+        } else {
+            return Response::json("Error : this board is not one of your.");
+        }
     }
 
     /* ------------- STORE BOARD ------------ */
@@ -119,6 +139,28 @@ class BoardController extends Controller
             return Response::json('Error : Id is required to get users of board.', 400);
         } else {
 
+            $currentUser = Auth::user();
+
+            if(!isset($currentUser)){
+                return Response::json('Error : You are not connected.', 400);
+            }
+
+            if (!isset($currentUser->boards)){
+                return Response::json('Error : You have no board.', 400);
+            }
+
+            $isUserBoard = false;
+
+            foreach($currentUser->boards as $board){
+                if($board->id == $id){
+                    $isUserBoard = true;
+                }
+            }
+
+            if (!$isUserBoard){
+                return Response::json('Error : This board is not one of your.', 400);
+            }
+            
             if (empty(Board::find($id)->users)){
                 return Response::json('Error : No users find, have you specify board Id in query ?', 400);
             }
@@ -149,6 +191,28 @@ class BoardController extends Controller
         if(!$id){
             return Response::json('Error : Id is required to get lists of board.', 400);
         } else {
+
+            $currentUser = Auth::user();
+
+            if(!isset($currentUser)){
+                return Response::json('Error : You are not connected.', 400);
+            }
+
+            if (!isset($currentUser->boards)){
+                return Response::json('Error : You have no board.', 400);
+            }
+
+            $isUserBoard = false;
+
+            foreach($currentUser->boards as $board){
+                if($board->id == $id){
+                    $isUserBoard = true;
+                }
+            }
+
+            if(!$isUserBoard){
+                return Response::json('Error : This board is not one of your.', 400);
+            }
 
             if (empty(Board::find($id)->lists)){
                 return Response::json('Error : No lists find, have you specify board Id in query ?', 400);
@@ -197,6 +261,14 @@ class BoardController extends Controller
             return Response::json('Error : You are not connected.', 400);
         }
 
+        if (empty($inputs)){
+            return Response::json('Error : Nothing to update.', 204);
+        }
+
+        if (!isset($inputs['is_archived']) && !isset($inputs['name'])){
+            return Response::json('Error : Nothing to update.', 204);
+        }
+
         $currentBoard = Board::find($id);
 
         $isInUserBoards = false;
@@ -213,7 +285,8 @@ class BoardController extends Controller
 
                     DB::table('boards')->where('id', $currentBoard->id)->update([
                         "name" => $inputs['name'],
-                        "is_archived" => $input['is_archived'] ?? $is_archived
+                        "is_archived" => $input['is_archived'] ?? $is_archived,
+                        "updated_at" => now()
                     ]);
                     return Response::json('Board update with success : ' . $currentBoard->id , 200);
                 } else {

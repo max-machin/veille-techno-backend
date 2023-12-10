@@ -19,6 +19,8 @@ class BoardRight extends Model
         'name',
     ];
 
+    protected $table = 'board_right';
+
     public function Boards()
     {
         return $this->belongsToMany(

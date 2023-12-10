@@ -307,6 +307,61 @@
                 }
             }
         },
+        "/api/lists/{id}/cards": {
+            "get": {
+                "tags": [
+                    "Cards"
+                ],
+                "summary": "Get all cards for one list",
+                "description": "Return all cards for specific list",
+                "operationId": "7df58d7a0fb27a7ced8c52eba9282e48",
+                "responses": {
+                    "200": {
+                        "description": "array => list of cards"
+                    },
+                    "400": {
+                        "description": "Bad request : not connected"
+                    },
+                    "419": {
+                        "description": "Delay error : CSRF Token missed ?"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Cards"
+                ],
+                "summary": "Insert new card into list",
+                "description": "Create new card into list to DB",
+                "operationId": "bf478cd8fc1fdc7cfb5ebc19a8430604",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "String -> modified card id"
+                    },
+                    "400": {
+                        "description": "Bad request : No name || not connected"
+                    },
+                    "419": {
+                        "description": "Delay error : CSRF Token missed ?"
+                    }
+                }
+            }
+        },
         "/api/lists": {
             "get": {
                 "tags": [

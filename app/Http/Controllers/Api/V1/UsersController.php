@@ -173,7 +173,33 @@ class UsersController extends Controller
         }
 
         if ($user->id !== $authUser->id){
-            return Response::json("Error : you can't modify an other user without rights.", 400);
+
+            if ($this->user->right_id == 3){
+
+                if (!empty($inputs['password'])){
+
+                    $password = $inputs['password'];
+    
+                    $uppercase = preg_match('@[A-Z]@', $password);
+                    $lowercase = preg_match('@[a-z]@', $password);
+                    $number    = preg_match('@[0-9]@', $password);
+            
+                    if(!$uppercase || !$lowercase || !$number || strlen($password) < 8) {
+                        return Response::json('Password not correct, need : 8 caracters, 1 uppercase, 1 lowercase and 1 number', 400);
+                    } else {
+                        $inputs['password'] = Hash::make($inputs['password']);
+                    }
+                }
+                
+                DB::table('users')->where('id', $user->id)->update($inputs);
+                DB::table('users')->where('id', $user->id)->update(['updated_at' => now()]);
+                $user = User::find($user->id);
+                $request->session()->regenerate();
+                
+                return Response::json('Data updated for : ' . $user->firstname, 200);
+            } else {
+                return Response::json("Error : you can't modify an other user without rights.", 400);
+            }
         } else {
 
             if (!empty($inputs['password'])){
@@ -192,6 +218,7 @@ class UsersController extends Controller
             }
             
             DB::table('users')->where('id', $user->id)->update($inputs);
+            DB::table('users')->where('id', $user->id)->update(['updated_at' => now()]);
             $user = User::find($user->id);
             $request->session()->regenerate();
             
@@ -243,6 +270,10 @@ class UsersController extends Controller
         if(!$id){
             return Response::json('Error : Id is required to get boards of user.', 400);
         } else {
+            
+            if ($this->user->id != $id){
+                return Response::json('Error : Is not your account.', 400);
+            } 
 
             if (empty(User::find($id)->boards)){
                 return Response::json('Error : No boards find, have you specify user Id in query ?', 400);

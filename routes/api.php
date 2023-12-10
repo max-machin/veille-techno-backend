@@ -46,5 +46,6 @@ Route::group(['middleware' => 'web'], function () {
 
     // Card
     Route::apiResource('/cards', CardController::class);
-
+    Route::post('/lists/{id}/cards', [CardController::class, 'addCard']);
+    Route::get('/lists/{id}/cards', [CardController::class, 'getListCards']);
 });

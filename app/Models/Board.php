@@ -28,6 +28,6 @@ class Board extends Model
 
     public function lists()
     {
-        return $this->hasMany(Lists::class);
+        return $this->hasMany(Lists::class, 'board_id');
     }
 }

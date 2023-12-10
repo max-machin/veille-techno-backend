@@ -16,7 +16,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string('title');
             $table->string('description');
-            $table->integer('priority');
+            $table->integer('priority')->nullable();
             $table->date('limit_date')->nullable();
             $table->foreignId('list_id')->constrained('lists')->delete('cascade');
         });

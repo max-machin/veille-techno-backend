@@ -13,4 +13,9 @@ class Lists extends Model
     {
         return $this->belongsToMany(Board::class, 'user_board');
     }
+
+    public function cards()
+    {
+        return $this->hasMany(Card::class, 'list_id');
+    }
 }
