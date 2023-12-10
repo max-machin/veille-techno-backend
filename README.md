@@ -87,6 +87,10 @@ Une fois ces étapes effectuées, toutes les routes de l'API sont utilisables.
 ![kanbannn](https://github.com/max-machin/veille-techno-backend/assets/91805615/dd24c119-fd79-48c3-a81d-75fcdc627f38)
 
 ## Documentation
+Génération de la documentation swagger : 
+```
+php artisan l5-swagger:generate
+```
 Une documentation Swagger Ui est disponible à l'adresse suivante : 
 ```
 http://localhost:8000/api/documentation
