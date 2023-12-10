@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Models\Lists;
+use App\Models\UserBoard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -49,20 +50,51 @@ class ListsController extends Controller
      *          required=true
      *     ),
      *     @OA\Response(response="200", description="Array[] : Target list"),
+     *     @OA\Response(response="400", description="Bad request : not connected"),
      *     @OA\Response(response="419", description="Delay error : CSRF Token missed ?")
      * )
     */
     public function show(string $id)
     {
 
-        $lists = Lists::find($id);
+        $currentUser = Auth::user();
 
-        if (empty($lists)){
-            return Response::json('No list to return.', 200);
-        } else {
-            return $lists;
+        if (!isset($currentUser)){
+            return Response::json('Error : You are not connected.', 400);
         }
- 
+
+        if (!isset($currentUser->boards)){
+            return Response::json('Error : You have no board.', 400);
+        }
+
+        $isUserList = false;
+
+        foreach($currentUser->boards as $board){
+            
+            if (!isset($board->lists)){
+                return;
+            }
+
+            foreach($board->lists as $list){
+                if ($list->id == $id){
+                    $isUserList = true;
+                }
+            }
+        }
+
+        if ($isUserList = true){
+            $lists = Lists::find($id);
+
+            if (empty($lists)){
+                return Response::json('No list to return.', 200);
+            } else {
+                return $lists;
+            }
+     
+        } else {
+            return Response::json('You have not the correct rights to see this list.', 200);
+        }
+        
     }
 
     /* ------------- STORE LIST ------------ */
@@ -107,8 +139,15 @@ class ListsController extends Controller
         $isUserBoard = false;
 
         foreach($currentUser->boards as $board){
+
+            $userRight = UserBoard::where([['user_id' , $board->pivot->user_id], ['board_id', $board->pivot->board_id]])->get()->first();
+
             if ($board->id == $id){
-                $isUserBoard = true;
+                if ($userRight->board_right_id === 1){
+                    $isUserBoard = true;
+                } else {
+                    return Response::json('Error : You have not the correct rights to modify this board.', 400);
+                }
             }
         }
 
@@ -168,18 +207,46 @@ class ListsController extends Controller
             return Response::json("Error : you are not connected.", 400);
         }
 
-        $is_archived = 0;
-
-        if(isset($inputs['title'])){
-            DB::table('lists')->where('id', $id)->update([
-                "title" => $inputs['title'],
-            ]);
+        if (!isset($authUser->boards)){
+            return Response::json("Error : You have no board.", 400); 
         }
 
-        DB::table('lists')->where('id', $id)->update([
-            "is_archived" => $input['is_archived'] ?? $is_archived
-        ]);
+        $isUserList = false;
+
+        foreach($authUser->boards as $board){
+
+            $userRight = UserBoard::where([['user_id' , $board->pivot->user_id], ['board_id', $board->pivot->board_id]])->get()->first();
+
+            if (!isset($board->lists)){
+                return;
+            }
+
+            foreach($board->lists as $list){
+                if ($list->id == $id){
+
+                    if ($userRight->board_right_id === 1){
+                        $isUserList = true;
+                    } else {
+                        return Response::json('Error : You have not the correct rights to modify this board.', 400);
+                    }
+                }
+            }
+        }
         
+        if ($isUserList){
+            if (isset($inputs['title'])){
+                $list->title = $inputs['title'];
+            }
+
+            if (isset($inputs['is_archives'])){
+                $list->is_archived = $inputs['is_archives'];
+            }
+
+            $list->updated_at = now();
+            $list->update();
+        } else {
+            return Response::json("Error : This is not one of your list.", 400);
+        }
 
         return Response::json("List update succed.", 200);
 
@@ -203,6 +270,46 @@ class ListsController extends Controller
     */
     public function destroy(string $id)
     {
-        return 'Method not ready';
+
+        $list = Lists::find($id);
+
+        $currentUser = Auth::user();
+
+        if (!isset($currentUser)){
+            return Response::json('Error : You are not connected.', 400);
+        }
+
+        if (!isset($currentUser->boards)){
+            return Response::json('You have no board.', 400);
+        }
+
+        $isUserList = false;
+
+        foreach($currentUser->boards as $board){
+
+            $userRight = UserBoard::where([['user_id' , $board->pivot->user_id], ['board_id', $board->pivot->board_id]])->get()->first();
+
+            if (!isset($board->lists)){
+                return;
+            }
+
+            foreach($board->lists as $list){
+                if ($list->id == $id){
+                    if ($userRight->board_right_id === 1){
+                        $isUserList = true;
+                    } else {
+                        return Response::json('Error : You have not the correct rights to modify this board.', 400);
+                    }
+                }
+            }
+        }
+
+        if ($isUserList){
+            $list->delete();
+            return Response::json('The list have been deleted.', 200);
+        } else {
+            return Response::json('Error : You cannot delete this list.', 400);
+        }
+        return $list;
     }
 }

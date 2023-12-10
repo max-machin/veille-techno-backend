@@ -362,6 +362,56 @@
                 }
             }
         },
+        "/api/cards/{id}": {
+            "put": {
+                "tags": [
+                    "Cards"
+                ],
+                "summary": "Modify info for specific card by id",
+                "description": "Modify card by id",
+                "operationId": "6dab355b5ecaefd70084a48e22879847",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id of target card",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "is_archived": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "String -> modified card id"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "419": {
+                        "description": "Delay error : CSRF Token missed ?"
+                    }
+                }
+            }
+        },
         "/api/lists": {
             "get": {
                 "tags": [
@@ -435,6 +485,9 @@
                 "responses": {
                     "200": {
                         "description": "Array[] : Target list"
+                    },
+                    "400": {
+                        "description": "Bad request : not connected"
                     },
                     "419": {
                         "description": "Delay error : CSRF Token missed ?"
