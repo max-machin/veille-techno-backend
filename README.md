@@ -58,7 +58,15 @@ php artisan serve
 
 ## Utilisation du projet ( Postman )
 ### Première utilisation - Etapes requises
+
+Un fichier contenant toutes les routes prévues est disponible dans le projet : 
+```
+Laravel Api.postman_collection.json
+```
+Il suffit de le télécharger et de l'exporter directement dans POSTMAN.
+
 Ces étapes sont nécessaires après la création de la base de données pour un fonctionnement optimal de l'application.
+
 Enregistrer un nouvel utilisateur ( post : firstname, lastname, email, password ) 
 ```
 http://[SERVER_URL]/api/register
