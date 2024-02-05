@@ -46,6 +46,9 @@ composer install
 composer update
 ```
 #### Base de données
+Variables d'environnement : 
+Renommer le fichier .env.example ---> .env et paramétrer selon la BDD locale.
+
 Création / mise à jour de la base de données.
 ```sh
 php artisan migrate
